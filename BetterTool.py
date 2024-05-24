@@ -16,6 +16,7 @@ from getpass		import getpass
 from threading		import Thread
 from shutil		import which
 from platform			import system as reset
+from Crash.crash import CriticalError
 try:
 	import speedtest
 	import httpx
@@ -213,6 +214,8 @@ class BetterToolHome:
                 data = args[0].upper()
                 if cmd in ["help", "HELP"]:
                     BetterToolHome.showhelp()
+                elif cmd in ["sysinfo", "osinfo"]:
+                      CriticalError()
                 elif cmd in ['clear', 'cls', 'CLEAR', 'CLS']:
                     cmdClear()
                     print(BetterToolHome.Banner())
@@ -248,6 +251,7 @@ class BetterToolHome:
                             BetterToolStart.ipinfo(args[1])  
                 except IndexError:
                       print(f"{Color.BOLD}{Color.CYAN}EXAMPLE{Color.RED} - !{Color.CYAN}ipinfo {Color.CYAN}({Color.VIOLET}8.8.8.8{Color.CYAN})")
+
         except KeyboardInterrupt:
             exit()
 
