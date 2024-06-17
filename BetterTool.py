@@ -218,7 +218,7 @@ class BetterToolHome:
                          ║{Color.CYAN}    BetterTool Available Tools/Commands & Methods{Color.RED}    ║
                          ║   <═══════════════════════════════════════════>     ║
                          ║                                                     ║
-                         ║  coming soon...               ║
+                         ║  coming soon...                                     ║
                          ║                                                     ║
                          ║                                                     ║
                          ║                                                     ║
