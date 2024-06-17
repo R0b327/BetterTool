@@ -16,13 +16,13 @@ from getpass		import getpass
 from threading		import Thread
 from shutil		import which
 from platform			import system as reset
-from Crash.crash import CriticalError
+from subprocess import run
 try:
-	import speedtest
-	import httpx
-	from bs4	import BeautifulSoup
+    import speedtest
+    import httpx
+    from bs4	import BeautifulSoup
 except Exception as err:
-	exit(err)
+    exit(err)
 
 try:makedirs("screenshot")
 except:pass
@@ -183,12 +183,20 @@ class BetterToolHome:
             USING THIS PROJECT FOR ILLEGAL ACTIVITIES IS AT YOUR OWN RISK!
 	    I'M NOT RESPONSIBLE FOR ANY OF YOUR TAKEN ACTIONS!
 		
-		Type "help" To get Started!                     Contact Dev: https://m.me/R0b327
+		Type "help/page1/page2" To get Started!                     Contact Dev: https://m.me/R0b327
 
 {Color.RESET}"""
-
+    
     def showhelp():
-        print(f"""{Color.RED}                         ╔═════════════════════════════════════════════════════╗
+          cmdClear()
+          print(BetterToolHome.Banner())
+          return BetterToolHome.page1()
+
+
+    def page1():
+        cmdClear()
+        print(BetterToolHome.Banner())
+        print(f"""{Color.RED}                                               Page 1 of 2\n                         ╔═════════════════════════════════════════════════════╗
                          ║{Color.CYAN}    BetterTool Available Tools/Commands & Methods{Color.RED}    ║
                          ║   <═══════════════════════════════════════════>     ║
                          ║                                                     ║
@@ -196,12 +204,31 @@ class BetterToolHome:
                          ║  {Color.RED}!{Color.CYAN}ipinfo{Color.RED} - {Color.VIOLET}Get Information from IP address [ip] {Color.RED}    ║
                          ║  {Color.RED}!{Color.CYAN}lookup{Color.RED} - {Color.VIOLET}Get Details of Your Target [url, domain]{Color.RED} ║
                          ║  {Color.RED}!{Color.CYAN}screenshot{Color.RED} - {Color.VIOLET}Make Screenshot of any Websites{Color.RED}      ║
-                         ║  {Color.CYAN}speedtest{Color.RED} - {Color.VIOLET}Connection Speedtest{Color.RED}                   ║
+                         ║  {Color.CYAN}shownet{Color.RED} - {Color.VIOLET}Internet Connection Monitoring{Color.RED}           ║
+                         ║  {Color.CYAN}speedtest{Color.RED} - {Color.VIOLET}Network Speedtest{Color.RED}                      ║
+                         ║  {Color.CYAN}clear/cls{Color.RED} - {Color.VIOLET}Clear Terminal{Color.RED}                         ║
                          ║  {Color.CYAN}exit{Color.RED} - {Color.VIOLET}Exit/Quit the Program{Color.RED}                       ║
                          ║                                                     ║
                          ╚═════════════════════════════════════════════════════╝
 """)
-
+    def page2():
+        cmdClear()
+        print(BetterToolHome.Banner())
+        print(f"""{Color.RED}                                               Page 2 of 2\n                         ╔═════════════════════════════════════════════════════╗
+                         ║{Color.CYAN}    BetterTool Available Tools/Commands & Methods{Color.RED}    ║
+                         ║   <═══════════════════════════════════════════>     ║
+                         ║                                                     ║
+                         ║  coming soon...               ║
+                         ║                                                     ║
+                         ║                                                     ║
+                         ║                                                     ║
+                         ║                                                     ║
+                         ║                                                     ║
+                         ║                                                     ║
+                         ║                                                     ║
+                         ╚═════════════════════════════════════════════════════╝
+""")
+        
 
     @staticmethod
     def Command():
@@ -214,11 +241,15 @@ class BetterToolHome:
                 data = args[0].upper()
                 if cmd in ["help", "HELP"]:
                     BetterToolHome.showhelp()
-                elif cmd in ["sysinfo", "osinfo"]:
-                      CriticalError()
+                elif cmd in ["page1", "PAGE1"]:
+                      BetterToolHome.page1()
+                elif cmd in ["page2", "PAGE2"]:
+                      BetterToolHome.page2()
                 elif cmd in ['clear', 'cls', 'CLEAR', 'CLS']:
                     cmdClear()
                     print(BetterToolHome.Banner())
+                elif cmd in ['shownet', 'SHOWNET']:
+                      run(['start', 'python3', 'shownet.py'], shell=True)
                 elif cmd in ['speedtest', 'SPEEDTEST']:
                       BetterToolStart.speedtest()
                 elif cmd in ["exit", "quit"]:
@@ -226,7 +257,9 @@ class BetterToolHome:
                     if option in ["y", "Y", "Yes", "YES"]:
                         exit(f"{Color.GREEN}Thanks for using!{Color.RESET}")
                     elif option in ["n", "N", "no", "No", "NO"]:
-                        pass
+                        BetterToolHome.Command()
+                elif cmd in ["", ""]:
+                      pass
                 try:
                     if data in ["!LOOKUP"]:
                         if args[1] == '':
